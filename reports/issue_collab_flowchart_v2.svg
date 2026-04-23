@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 7200" font-family="-apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="3" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ef4444"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22c55e"/>
+    </marker>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="7200" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <text x="600" y="55" text-anchor="middle" fill="#f8fafc" font-size="28" font-weight="700">issue-collab-core v3.4.0 — 完整工作流程图</text>
+  <text x="600" y="85" text-anchor="middle" fill="#94a3b8" font-size="14">多 Agent 协作引擎 · 路由 → 组队 → 分发 → 聚合 → 质量门禁 → 归档导出</text>
+  <line x1="100" y1="105" x2="1100" y2="105" stroke="#334155" stroke-width="1"/>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- PHASE 0: 用户输入 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <rect x="250" y="130" width="700" height="80" rx="12" fill="#1e40af" stroke="#3b82f6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="600" y="160" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="600">PHASE 0 — 用户输入</text>
+  <text x="600" y="185" text-anchor="middle" fill="#e2e8f0" font-size="14">飞书用户发送请求 → 阿智接收 → ACP 通知 Hermes</text>
+  <text x="600" y="202" text-anchor="middle" fill="#94a3b8" font-size="12">例如: "帮我调研 WORX Landroid M2000 割草机器人"</text>
+
+  <!-- Arrow -->
+  <line x1="600" y1="210" x2="600" y2="260" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- PHASE 1: 路由判断 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <rect x="250" y="260" width="700" height="400" rx="12" fill="#1a1a2e" stroke="#334155" stroke-width="2" filter="url(#shadow)"/>
+  <text x="600" y="295" text-anchor="middle" fill="#fbbf24" font-size="15" font-weight="700">PHASE 1 — 意图路由 (router.py)</text>
+  <line x1="270" y1="310" x2="930" y2="310" stroke="#334155" stroke-width="1"/>
+
+  <!-- Step 1.1 -->
+  <rect x="280" y="330" width="640" height="45" rx="6" fill="#334155"/>
+  <text x="300" y="357" fill="#e2e8f0" font-size="13">📝 提取用户输入文本，转小写</text>
+
+  <!-- Step 1.2 -->
+  <rect x="280" y="390" width="310" height="60" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="290" y="410" fill="#93c5fd" font-size="12" font-weight="600">垂直领域匹配</text>
+  <text x="290" y="428" fill="#cbd5e1" font-size="11">• competitive_analysis (竞品调研)</text>
+  <text x="290" y="443" fill="#cbd5e1" font-size="11">• tech_selection (技术选型)</text>
+
+  <rect x="600" y="390" width="320" height="60" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="610" y="410" fill="#93c5fd" font-size="12" font-weight="600">通用意图匹配</text>
+  <text x="610" y="428" fill="#cbd5e1" font-size="11">• 问题讨论 / 团队讨论 / 方案评审</text>
+  <text x="610" y="443" fill="#cbd5e1" font-size="11">• 需求评审 / Bug复盘 / 头脑风暴</text>
+
+  <!-- Decision -->
+  <polygon points="600,475 700,510 600,545 500,510" fill="#4c1d95" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="600" y="506" text-anchor="middle" fill="#e2e8f0" font-size="11">哪个分数更高?</text>
+
+  <!-- Vertical branch -->
+  <line x1="500" y1="510" x2="380" y2="510" stroke="#a78bfa" stroke-width="2"/>
+  <line x1="380" y1="510" x2="380" y2="580" stroke="#a78bfa" stroke-width="2"/>
+  <rect x="280" y="580" width="200" height="65" rx="6" fill="#5b21b6" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="380" y="600" text-anchor="middle" fill="#e9d5ff" font-size="11">垂直流程</text>
+  <text x="380" y="618" text-anchor="middle" fill="#c4b5fd" font-size="10">mode=vertical</text>
+  <text x="380" y="633" text-anchor="middle" fill="#c4b5fd" font-size="10">domain=competitive_analysis</text>
+
+  <!-- General branch -->
+  <line x1="700" y1="510" x2="820" y2="510" stroke="#a78bfa" stroke-width="2"/>
+  <line x1="820" y1="510" x2="820" y2="580" stroke="#a78bfa" stroke-width="2"/>
+  <rect x="720" y="580" width="200" height="65" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="820" y="600" text-anchor="middle" fill="#93c5fd" font-size="11">通用流程</text>
+  <text x="820" y="618" text-anchor="middle" fill="#60a5fa" font-size="10">mode=general</text>
+  <text x="820" y="633" text-anchor="middle" fill="#60a5fa" font-size="10">domain=null</text>
+
+  <!-- Arrow -->
+  <line x1="600" y1="660" x2="600" y2="710" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- PHASE 2: 团队组建 (仅竞品调研详细展开) -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <rect x="100" y="710" width="1000" height="850" rx="12" fill="#1a1a2e" stroke="#334155" stroke-width="2" filter="url(#shadow)"/>
+  <text x="600" y="745" text-anchor="middle" fill="#fbbf24" font-size="15" font-weight="700">PHASE 2 — 团队组建与任务分发 (dispatch_team.py)</text>
+  <line x1="120" y1="760" x2="1080" y2="760" stroke="#334155" stroke-width="1"/>
+
+  <!-- 2.1 Load Role Mapping -->
+  <rect x="150" y="780" width="430" height="50" rx="6" fill="#334155"/>
+  <text x="165" y="810" fill="#e2e8f0" font-size="12">📂 2.1 load_role_mapping() → 读取 modes/role_mapping.yaml</text>
+
+  <!-- 2.2 Resolve SME -->
+  <rect x="620" y="780" width="430" height="50" rx="6" fill="#334155"/>
+  <text x="635" y="810" fill="#e2e8f0" font-size="12">🎯 2.2 resolve_sme_domain() → 按 domain 选 SME Agent</text>
+
+  <!-- 2.3 Build Team -->
+  <rect x="150" y="850" width="900" height="55" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="165" y="872" fill="#93c5fd" font-size="12" font-weight="600">👥 2.3 build_team() → 组建 6 角色团队</text>
+  <text x="165" y="892" fill="#cbd5e1" font-size="11">Facilitator(阿智) | SME(动态) | Ideator(方案) | Devil's Advocate(PO) | Scribe(记录) | Action Tracker(ops)</text>
+
+  <!-- 2.4 Generate Prompts -->
+  <rect x="150" y="930" width="900" height="130" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="165" y="952" fill="#93c5fd" font-size="12" font-weight="600">📝 2.4 generate_task_prompt() → 为每个角色生成任务 prompt</text>
+  <text x="165" y="972" fill="#cbd5e1" font-size="11">• 注入水印指令 (issue-collab 自动生成 / Agent 签名)</text>
+  <text x="165" y="988" fill="#cbd5e1" font-size="11">• 注入模板路径 (templates/competitive_analysis_v2.md)</text>
+  <text x="165" y="1004" fill="#cbd5e1" font-size="11">• 注入产品图片 URL (Hermes 主流程验证后传入)</text>
+  <text x="165" y="1020" fill="#cbd5e1" font-size="11">• 指定结果文件路径 (run_dir/results/{role}.md)</text>
+
+  <!-- 2.5 Write Prompt Files -->
+  <rect x="150" y="1080" width="430" height="55" rx="6" fill="#334155"/>
+  <text x="165" y="1100" fill="#e2e8f0" font-size="12">💾 2.5 写入 prompt 文件</text>
+  <text x="165" y="1118" fill="#94a3b8" font-size="11">run_dir/prompts/{role}.md (6 个文件)</text>
+
+  <!-- 2.6 Generate Dispatch Plan -->
+  <rect x="600" y="1080" width="450" height="55" rx="6" fill="#334155"/>
+  <text x="615" y="1100" fill="#e2e8f0" font-size="12">📋 2.6 生成 dispatch_plan.json</text>
+  <text x="615" y="1118" fill="#94a3b8" font-size="11">含: mode, topic, domain, agents[], dispatch_order</text>
+
+  <!-- 2.7 Execution Mode Decision -->
+  <polygon points="600,1160 700,1195 600,1230 500,1195" fill="#4c1d95" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="600" y="1188" text-anchor="middle" fill="#e2e8f0" font-size="11">执行模式?</text>
+
+  <!-- Branch: default -->
+  <line x1="500" y1="1195" x2="300" y2="1195" stroke="#a78bfa" stroke-width="2"/>
+  <line x1="300" y1="1195" x2="300" y2="1300" stroke="#a78bfa" stroke-width="2"/>
+  <rect x="170" y="1300" width="260" height="120" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="300" y="1322" text-anchor="middle" fill="#93c5fd" font-size="11" font-weight="600">默认: execute_dispatch.py</text>
+  <text x="300" y="1342" text-anchor="middle" fill="#cbd5e1" font-size="10">• 读取 dispatch_plan.json</text>
+  <text x="300" y="1358" text-anchor="middle" fill="#cbd5e1" font-size="10">• 按优先级串行/并行派发</text>
+  <text x="300" y="1374" text-anchor="middle" fill="#cbd5e1" font-size="10">• 支持 fallback 机制</text>
+  <text x="300" y="1390" text-anchor="middle" fill="#cbd5e1" font-size="10">• 超时控制 (默认 300s)</text>
+  <text x="300" y="1406" text-anchor="middle" fill="#cbd5e1" font-size="10">• hermes_tools 不可用时 exit(1)</text>
+
+  <!-- Branch: --execute -->
+  <line x1="600" y1="1230" x2="600" y2="1300" stroke="#22c55e" stroke-width="2"/>
+  <rect x="470" y="1300" width="260" height="120" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="600" y="1322" text-anchor="middle" fill="#86efac" font-size="11" font-weight="600">--execute: 直接 delegate_task</text>
+  <text x="600" y="1342" text-anchor="middle" fill="#bbf7d0" font-size="10">• 直接调用 delegate_task 工具</text>
+  <text x="600" y="1358" text-anchor="middle" fill="#bbf7d0" font-size="10">• 绕过 execute_dispatch.py</text>
+  <text x="600" y="1374" text-anchor="middle" fill="#bbf7d0" font-size="10">• 按优先级依次派发</text>
+  <text x="600" y="1390" text-anchor="middle" fill="#bbf7d0" font-size="10">• 结果写入 results/{role}.md</text>
+  <text x="600" y="1406" text-anchor="middle" fill="#bbf7d0" font-size="10">• 失败则标记 failed</text>
+
+  <!-- Branch: --no-execute -->
+  <line x1="700" y1="1195" x2="900" y2="1195" stroke="#ef4444" stroke-width="2"/>
+  <line x1="900" y1="1195" x2="900" y2="1300" stroke="#ef4444" stroke-width="2"/>
+  <rect x="770" y="1300" width="260" height="120" rx="8" fill="#450a0a" stroke="#ef4444" stroke-width="1"/>
+  <text x="900" y="1322" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="600">--no-execute: 仅生成计划</text>
+  <text x="900" y="1342" text-anchor="middle" fill="#fecaca" font-size="10">• 只输出 dispatch_plan.json</text>
+  <text x="900" y="1358" text-anchor="middle" fill="#fecaca" font-size="10">• 不实际派发任务</text>
+  <text x="900" y="1374" text-anchor="middle" fill="#fecaca" font-size="10">• 用于调试/审查</text>
+  <text x="900" y="1390" text-anchor="middle" fill="#fecaca" font-size="10">• 打印人类可读指令</text>
+  <text x="900" y="1406" text-anchor="middle" fill="#fecaca" font-size="10">• 不执行任何 Agent 调用</text>
+
+  <!-- Arrow -->
+  <line x1="600" y1="1420" x2="600" y2="1510" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- PHASE 3: 实际任务执行 (展开 execute_dispatch.py) -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <rect x="100" y="1510" width="1000" height="850" rx="12" fill="#1a1a2e" stroke="#334155" stroke-width="2" filter="url(#shadow)"/>
+  <text x="600" y="1545" text-anchor="middle" fill="#fbbf24" font-size="15" font-weight="700">PHASE 3 — 实际任务执行 (execute_dispatch.py)</text>
+  <line x1="120" y1="1560" x2="1080" y2="1560" stroke="#334155" stroke-width="1"/>
+
+  <!-- 3.1 Load Plan -->
+  <rect x="150" y="1580" width="430" height="45" rx="6" fill="#334155"/>
+  <text x="165" y="1607" fill="#e2e8f0" font-size="12">📂 3.1 读取 dispatch_plan.json</text>
+
+  <!-- 3.2 Check Hermes -->
+  <rect x="620" y="1580" width="430" height="45" rx="6" fill="#334155"/>
+  <text x="635" y="1607" fill="#e2e8f0" font-size="12">✅ 3.2 检查 hermes_tools 可用性</text>
+
+  <!-- 3.3 Sort by Priority -->
+  <rect x="150" y="1650" width="900" height="45" rx="6" fill="#334155"/>
+  <text x="165" y="1677" fill="#e2e8f0" font-size="12">📊 3.3 按优先级排序: Facilitator(1) → 其余并行(2-6)</text>
+
+  <!-- 3.4 Execute Loop -->
+  <rect x="150" y="1720" width="900" height="400" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="165" y="1745" fill="#93c5fd" font-size="13" font-weight="600">🔄 3.4 执行循环 (每个角色)</text>
+
+  <!-- Sub-steps -->
+  <rect x="170" y="1770" width="400" height="35" rx="4" fill="#334155"/>
+  <text x="185" y="1792" fill="#e2e8f0" font-size="11">① 读取 run_dir/prompts/{role}.md</text>
+
+  <rect x="600" y="1770" width="430" height="35" rx="4" fill="#334155"/>
+  <text x="615" y="1792" fill="#e2e8f0" font-size="11">② delegate_task(goal=prompt, toolsets=[...])</text>
+
+  <rect x="170" y="1820" width="400" height="35" rx="4" fill="#334155"/>
+  <text x="185" y="1842" fill="#e2e8f0" font-size="11">③ Agent 在独立 session 中执行任务</text>
+
+  <rect x="600" y="1820" width="430" height="35" rx="4" fill="#334155"/>
+  <text x="615" y="1842" fill="#e2e8f0" font-size="11">④ Agent 写入结果到 results/{role}.md</text>
+
+  <rect x="170" y="1870" width="400" height="35" rx="4" fill="#334155"/>
+  <text x="185" y="1892" fill="#e2e8f0" font-size="11">⑤ 检查超时 (timeout=300s)</text>
+
+  <rect x="600" y="1870" width="430" height="35" rx="4" fill="#334155"/>
+  <text x="615" y="1892" fill="#e2e8f0" font-size="11">⑥ 检查结果文件是否存在 + 非空</text>
+
+  <rect x="170" y="1920" width="400" height="35" rx="4" fill="#334155"/>
+  <text x="185" y="1942" fill="#e2e8f0" font-size="11">⑦ 提取结果预览 (前 200 字符)</text>
+
+  <rect x="600" y="1920" width="430" height="35" rx="4" fill="#334155"/>
+  <text x="615" y="1942" fill="#e2e8f0" font-size="11">⑧ 记录状态: success/timeout/failed</text>
+
+  <!-- Fallback branch -->
+  <rect x="300" y="1980" width="600" height="55" rx="6" fill="#450a0a" stroke="#ef4444" stroke-width="1"/>
+  <text x="600" y="1998" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="600">⚠️ 失败处理: 如果失败 → 尝试 fallback_agent</text>
+  <text x="600" y="2018" text-anchor="middle" fill="#fecaca" font-size="10">fallback_agent 失败 → 标记 fallback_failed; 成功 → 标记 fallback_success</text>
+
+  <!-- 3.5 Execution Report -->
+  <rect x="150" y="2060" width="900" height="55" rx="6" fill="#334155"/>
+  <text x="165" y="2082" fill="#e2e8f0" font-size="12">📊 3.5 输出执行报告: execution_report.json (含每个任务的状态/耗时/错误)</text>
+  <text x="165" y="2102" fill="#94a3b8" font-size="11">status: pending → running → success | timeout → fallback_running → fallback_success | fallback_failed</text>
+
+  <!-- Arrow -->
+  <line x1="600" y1="2115" x2="600" y2="2410" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- PHASE 4: 结果聚合 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <rect x="100" y="2410" width="1000" height="650" rx="12" fill="#1a1a2e" stroke="#334155" stroke-width="2" filter="url(#shadow)"/>
+  <text x="600" y="2445" text-anchor="middle" fill="#fbbf24" font-size="15" font-weight="700">PHASE 4 — 结果聚合 (aggregate_results.py)</text>
+  <line x1="120" y1="2460" x2="1080" y2="2460" stroke="#334155" stroke-width="1"/>
+
+  <!-- 4.1 Check Quality -->
+  <rect x="150" y="2480" width="900" height="55" rx="6" fill="#334155"/>
+  <text x="165" y="2502" fill="#e2e8f0" font-size="12">🔍 4.1 check_file_quality() — 检查每个 results/{role}.md</text>
+  <text x="165" y="2522" fill="#94a3b8" font-size="11">检查项: 文件存在 | 内容非空 | 文件大小 | 提取 agent_id</text>
+
+  <!-- 4.2 Dedup Check -->
+  <rect x="150" y="2550" width="430" height="55" rx="6" fill="#450a0a" stroke="#ef4444" stroke-width="1"/>
+  <text x="165" y="2572" fill="#fca5a5" font-size="12" font-weight="600">⚠️ 4.2 Agent 去重校验</text>
+  <text x="165" y="2592" fill="#fecaca" font-size="11">同一 Agent 承担多角色 = 派发失败</text>
+
+  <!-- 4.3 Build Report -->
+  <rect x="600" y="2550" width="450" height="55" rx="6" fill="#334155"/>
+  <text x="615" y="2572" fill="#e2e8f0" font-size="12" font-weight="600">📝 4.3 构建报告正文</text>
+  <text x="615" y="2592" fill="#94a3b8" font-size="11">按角色顺序拼接: facilitator → ideator → ...</text>
+
+  <!-- 4.4 Quality Section -->
+  <rect x="150" y="2630" width="900" height="75" rx="6" fill="#334155"/>
+  <text x="165" y="2652" fill="#e2e8f0" font-size="12" font-weight="600">📊 4.4 生成质量报告章节 (附加到报告末尾)</text>
+  <text x="165" y="2672" fill="#cbd5e1" font-size="11">✅ 已完成角色 | ⚠️ 空文件 | ❌ 缺失产出 | ⚠️ Agent 重复 | 整体评价(🟢/🟡/🔴)</text>
+  <text x="165" y="2692" fill="#94a3b8" font-size="11">输出: quality_info.json (供程序化使用)</text>
+
+  <!-- 4.5 Output -->
+  <rect x="150" y="2730" width="430" height="55" rx="6" fill="#334155"/>
+  <text x="165" y="2752" fill="#e2e8f0" font-size="12">💾 4.5 写入 final_report.md</text>
+  <text x="165" y="2772" fill="#94a3b8" font-size="11">路径: run_dir/final_report.md</text>
+
+  <rect x="600" y="2730" width="450" height="55" rx="6" fill="#334155"/>
+  <text x="615" y="2752" fill="#e2e8f0" font-size="12">📋 4.6 可选: 输出 JSON 摘要</text>
+  <text x="615" y="2772" fill="#94a3b8" font-size="11">含: topic, mode, sections{}, quality_report</text>
+
+  <!-- Arrow -->
+  <line x1="600" y1="2785" x2="600" y2="3110" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- PHASE 5: 质量门禁 (check_report.py v7) -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <rect x="100" y="3110" width="1000" height="1100" rx="12" fill="#1a1a2e" stroke="#334155" stroke-width="2" filter="url(#shadow)"/>
+  <text x="600" y="3145" text-anchor="middle" fill="#fbbf24" font-size="15" font-weight="700">PHASE 5 — 质量门禁 (check_report.py v7 — Ultra Strict)</text>
+  <line x1="120" y1="3160" x2="1080" y2="3160" stroke="#334155" stroke-width="1"/>
+
+  <!-- 8 Check Items -->
+  <text x="150" y="3195" fill="#93c5fd" font-size="12" font-weight="600">8 项自动校验:</text>
+
+  <!-- Check 1 -->
+  <rect x="150" y="3210" width="430" height="55" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="165" y="3232" fill="#86efac" font-size="11" font-weight="600">① 水印校验 (check_watermark)</text>
+  <text x="165" y="3252" fill="#bbf7d0" font-size="10">包含 "issue-collab" 或 "Agent:" 或 "自动生成"</text>
+
+  <!-- Check 2 -->
+  <rect x="620" y="3210" width="430" height="55" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="635" y="3232" fill="#86efac" font-size="11" font-weight="600">② 交叉引用 (check_cross_references)</text>
+  <text x="635" y="3252" fill="#bbf7d0" font-size="10">包含 "参见"/"参考"/"详见" 等引用标记</text>
+
+  <!-- Check 3 -->
+  <rect x="150" y="3280" width="430" height="55" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="165" y="3302" fill="#86efac" font-size="11" font-weight="600">③ 置信度列 (check_confidence_columns)</text>
+  <text x="165" y="3322" fill="#bbf7d0" font-size="10">"置信度" 出现 ≥5 次 (每个参数表都有)</text>
+
+  <!-- Check 4 -->
+  <rect x="620" y="3280" width="430" height="55" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+  <text x="635" y="3302" fill="#86efac" font-size="11" font-weight="600">④ 数据来源 (check_data_sources)</text>
+  <text x="635" y="3322" fill="#bbf7d0" font-size="10">包含 "A. 数据来源与查证" 章节</text>
+
+  <!-- Check 5 -->
+  <rect x="150" y="3350" width="430" height="55" rx="6" fill="#450a0a" stroke="#ef4444" stroke-width="2"/>
+  <text x="165" y="3372" fill="#fca5a5" font-size="11" font-weight="600">⑤ 内容污染检查 ⭐ (check_contamination)</text>
+  <text x="165" y="3392" fill="#fecaca" font-size="10">禁止出现 "File unchanged since last read" 等缓存垃圾</text>
+
+  <!-- Check 6 -->
+  <rect x="620" y="3350" width="430" height="55" rx="6" fill="#450a0a" stroke="#ef4444" stroke-width="2"/>
+  <text x="635" y="3372" fill="#fca5a5" font-size="11" font-weight="600">⑥ 章节完整性 ⭐ (check_chapter_completeness)</text>
+  <text x="635" y="3392" fill="#fecaca" font-size="10">必须包含 一~九 全部 9 章 (竞品画布~附录)</text>
+
+  <!-- Check 7 -->
+  <rect x="150" y="3420" width="430" height="55" rx="6" fill="#450a0a" stroke="#ef4444" stroke-width="2"/>
+  <text x="165" y="3442" fill="#fca5a5" font-size="11" font-weight="600">⑦ 图片内容 ⭐ (check_image_content)</text>
+  <text x="165" y="3462" fill="#fecaca" font-size="10">URL 不含 "logo"/"brand"/"icon"; 尺寸 ≥400x400</text>
+
+  <!-- Check 8 -->
+  <rect x="620" y="3420" width="430" height="55" rx="6" fill="#334155"/>
+  <text x="635" y="3442" fill="#e2e8f0" font-size="11" font-weight="600">⑧ 图片 URL 有效性 (check_image_url_valid)</text>
+  <text x="635" y="3462" fill="#94a3b8" font-size="10">curl 检测 HTTP 200/301/302/304</text>
+
+  <!-- Subheadings Check -->
+  <rect x="150" y="3500" width="900" height="55" rx="6" fill="#334155"/>
+  <text x="165" y="3522" fill="#e2e8f0" font-size="11" font-weight="600">⑨ 子章节结构 (check_subheadings_in_chapter)</text>
+  <text x="165" y="3542" fill="#94a3b8" font-size="10">"技术参数" 章节必须有 ≥3 个 ### 子标题 (4.1, 4.2, 4.3...)</text>
+
+  <!-- Decision Diamond -->
+  <polygon points="600,3600 700,3640 600,3680 500,3640" fill="#4c1d95" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="600" y="3635" text-anchor="middle" fill="#e2e8f0" font-size="12">全部通过?</text>
+  <text x="600" y="3655" text-anchor="middle" fill="#c4b5fd" font-size="10">errors == 0?</text>
+
+  <!-- PASS branch -->
+  <line x1="500" y1="3640" x2="300" y2="3640" stroke="#22c55e" stroke-width="2"/>
+  <line x1="300" y1="3640" x2="300" y2="3750" stroke="#22c55e" stroke-width="2"/>
+  <rect x="170" y="3750" width="260" height="70" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="2"/>
+  <text x="300" y="3775" text-anchor="middle" fill="#86efac" font-size="14" font-weight="700">✅ PASS</text>
+  <text x="300" y="3798" text-anchor="middle" fill="#bbf7d0" font-size="11">报告质量合格</text>
+  <text x="300" y="3813" text-anchor="middle" fill="#bbf7d0" font-size="11">进入 PHASE 6 归档导出</text>
+
+  <!-- FAIL branch -->
+  <line x1="700" y1="3640" x2="900" y2="3640" stroke="#ef4444" stroke-width="2"/>
+  <line x1="900" y1="3640" x2="900" y2="3750" stroke="#ef4444" stroke-width="2"/>
+  <rect x="770" y="3750" width="260" height="70" rx="8" fill="#450a0a" stroke="#ef4444" stroke-width="2"/>
+  <text x="900" y="3775" text-anchor="middle" fill="#fca5a5" font-size="14" font-weight="700">❌ FAIL</text>
+  <text x="900" y="3798" text-anchor="middle" fill="#fecaca" font-size="11">打印错误清单</text>
+  <text x="900" y="3813" text-anchor="middle" fill="#fecaca" font-size="11">返回错误要求重写</text>
+
+  <!-- Feedback loop -->
+  <line x1="900" y1="3820" x2="900" y2="4050" stroke="#ef4444" stroke-width="2"/>
+  <line x1="900" y1="4050" x2="1150" y2="4050" stroke="#ef4444" stroke-width="2"/>
+  <line x1="1150" y1="4050" x2="1150" y2="3200" stroke="#ef4444" stroke-width="2" stroke-dasharray="8,4"/>
+  <line x1="1150" y1="3200" x2="1100" y2="3200" stroke="#ef4444" stroke-width="2" marker-end="url(#arrow-red)"/>
+  <text x="1155" y="3630" fill="#fca5a5" font-size="11" transform="rotate(90, 1155, 3630)">重写反馈循环</text>
+
+  <!-- Arrow from PASS -->
+  <line x1="300" y1="3820" x2="300" y2="4050" stroke="#22c55e" stroke-width="2"/>
+  <line x1="300" y1="4050" x2="600" y2="4050" stroke="#22c55e" stroke-width="2"/>
+  <line x1="600" y1="4050" x2="600" y2="4160" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- PHASE 6: 归档与导出 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <rect x="100" y="4160" width="1000" height="600" rx="12" fill="#1a1a2e" stroke="#334155" stroke-width="2" filter="url(#shadow)"/>
+  <text x="600" y="4195" text-anchor="middle" fill="#fbbf24" font-size="15" font-weight="700">PHASE 6 — 归档与导出 (export_all.py)</text>
+  <line x1="120" y1="4210" x2="1080" y2="4210" stroke="#334155" stroke-width="1"/>
+
+  <!-- 6.1 Archive -->
+  <rect x="150" y="4230" width="430" height="60" rx="6" fill="#334155"/>
+  <text x="165" y="4252" fill="#e2e8f0" font-size="12" font-weight="600">📁 6.1 归档到知识库</text>
+  <text x="165" y="4275" fill="#94a3b8" font-size="11">/Volumes/Disk-01/Knowledge-Archive/20_工作沉淀/竞品调研/</text>
+
+  <!-- 6.2 Word Export -->
+  <rect x="620" y="4230" width="430" height="60" rx="6" fill="#334155"/>
+  <text x="635" y="4252" fill="#e2e8f0" font-size="12" font-weight="600">📄 6.2 导出 Word (python-docx)</text>
+  <text x="635" y="4275" fill="#94a3b8" font-size="11">用户明确要求时才执行</text>
+
+  <!-- 6.3 HTML Export -->
+  <rect x="150" y="4310" width="430" height="60" rx="6" fill="#334155"/>
+  <text x="165" y="4332" fill="#e2e8f0" font-size="12" font-weight="600">🌐 6.3 导出 HTML (暗黑主题)</text>
+  <text x="165" y="4355" fill="#94a3b8" font-size="11">上传到 GitHub CDN → jsDelivr 加速</text>
+
+  <!-- 6.4 PDF Export -->
+  <rect x="620" y="4310" width="430" height="60" rx="6" fill="#334155"/>
+  <text x="635" y="4332" fill="#e2e8f0" font-size="12" font-weight="600">📑 6.4 导出 PDF (print_pdf.py)</text>
+  <text x="635" y="4355" fill="#94a3b8" font-size="11">用户明确要求时才执行</text>
+
+  <!-- 6.5 Notify -->
+  <rect x="350" y="4400" width="500" height="60" rx="8" fill="#1e40af" stroke="#3b82f6" stroke-width="2"/>
+  <text x="600" y="4425" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="600">📢 6.5 通知用户</text>
+  <text x="600" y="4448" text-anchor="middle" fill="#93c5fd" font-size="11">通过飞书发送报告链接/文件/网页预览</text>
+
+  <!-- Arrow -->
+  <line x1="600" y1="4460" x2="600" y2="4560" stroke="#64748b" stroke-width="2"/>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- LEGEND -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <rect x="100" y="4620" width="1000" height="400" rx="12" fill="#1a1a2e" stroke="#334155" stroke-width="2"/>
+  <text x="600" y="4655" text-anchor="middle" fill="#fbbf24" font-size="15" font-weight="700">图例与文件映射</text>
+  <line x1="120" y1="4670" x2="1080" y2="4670" stroke="#334155" stroke-width="1"/>
+
+  <!-- Left column: Color Legend -->
+  <text x="150" y="4705" fill="#e2e8f0" font-size="12" font-weight="600">颜色图例:</text>
+  <rect x="150" y="4715" width="20" height="15" rx="3" fill="#1e40af"/><text x="180" y="4728" fill="#cbd5e1" font-size="10">蓝色: 输入/输出节点</text>
+  <rect x="150" y="4738" width="20" height="15" rx="3" fill="#334155"/><text x="180" y="4751" fill="#cbd5e1" font-size="10">灰色: 常规处理步骤</text>
+  <rect x="150" y="4761" width="20" height="15" rx="3" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/><text x="180" y="4774" fill="#cbd5e1" font-size="10">深蓝: 核心处理块</text>
+  <rect x="150" y="4784" width="20" height="15" rx="3" fill="#4c1d95" stroke="#8b5cf6" stroke-width="1"/><text x="180" y="4797" fill="#cbd5e1" font-size="10">紫色: 决策点</text>
+  <rect x="150" y="4807" width="20" height="15" rx="3" fill="#14532d" stroke="#22c55e" stroke-width="1"/><text x="180" y="4820" fill="#cbd5e1" font-size="10">绿色: 成功路径</text>
+  <rect x="150" y="4830" width="20" height="15" rx="3" fill="#450a0a" stroke="#ef4444" stroke-width="1"/><text x="180" y="4843" fill="#cbd5e1" font-size="10">红色: 失败/警告路径</text>
+  <rect x="150" y="4853" width="20" height="15" rx="3" fill="#5b21b6" stroke="#8b5cf6" stroke-width="1"/><text x="180" y="4866" fill="#cbd5e1" font-size="10">深紫: 垂直流程分支</text>
+
+  <!-- Right column: File Mapping -->
+  <text x="600" y="4705" fill="#e2e8f0" font-size="12" font-weight="600">文件映射:</text>
+  <text x="600" y="4728" fill="#93c5fd" font-size="10">scripts/router.py → PHASE 1 路由判断</text>
+  <text x="600" y="4748" fill="#93c5fd" font-size="10">scripts/dispatch_team.py → PHASE 2 团队组建</text>
+  <text x="600" y="4768" fill="#93c5fd" font-size="10">scripts/execute_dispatch.py → PHASE 3 实际执行</text>
+  <text x="600" y="4788" fill="#93c5fd" font-size="10">scripts/aggregate_results.py → PHASE 4 结果聚合</text>
+  <text x="600" y="4808" fill="#93c5fd" font-size="10">scripts/check_report.py → PHASE 5 质量门禁</text>
+  <text x="600" y="4828" fill="#93c5fd" font-size="10">scripts/export_all.py → PHASE 6 归档导出</text>
+  <text x="600" y="4848" fill="#93c5fd" font-size="10">scripts/lib/team_builder.py → 共享: 角色加载/prompt 生成</text>
+  <text x="600" y="4868" fill="#93c5fd" font-size="10">templates/competitive_analysis_v2.md → 竞品调研 9 章模板</text>
+  <text x="600" y="4888" fill="#93c5fd" font-size="10">modes/role_mapping.yaml → 6 角色 → Agent 映射</text>
+
+  <!-- Anti-patterns -->
+  <text x="150" y="4920" fill="#fca5a5" font-size="12" font-weight="600">⚠️ 反模式 (2026-04-23 发现):</text>
+  <text x="170" y="4940" fill="#fecaca" font-size="10">1. 缓存读取污染: read_file 混入 "File unchanged since last read"</text>
+  <text x="170" y="4956" fill="#fecaca" font-size="10">2. 图片凑数: 用 brand logo 冒充产品图</text>
+  <text x="170" y="4972" fill="#fecaca" font-size="10">3. 静默失败: hermes_tools 不可用时自动切 simulate</text>
+  <text x="170" y="4988" fill="#fecaca" font-size="10">4. 单 session 模拟多角色: 同一 session 扮演 PO/小码/小一</text>
+
+  <!-- v3.4.0 New Features -->
+  <text x="600" y="4920" fill="#86efac" font-size="12" font-weight="600">✅ v3.4.0 新增:</text>
+  <text x="620" y="4940" fill="#bbf7d0" font-size="10">• 内容污染检查 (5 种模式检测)</text>
+  <text x="620" y="4956" fill="#bbf7d0" font-size="10">• 章节完整性检查 (9 章强制齐全)</text>
+  <text x="620" y="4972" fill="#bbf7d0" font-size="10">• 图片内容校验 (尺寸 + 非 logo)</text>
+  <text x="620" y="4988" fill="#bbf7d0" font-size="10">• 图片获取铁律 (主流程验证后传入)</text>
+  <text x="620" y="5004" fill="#bbf7d0" font-size="10">• 竞品调研 9 章模板 (competitive_analysis_v2.md)</text>
+
+  <!-- Footer -->
+  <line x1="100" y1="5080" x2="1100" y2="5080" stroke="#334155" stroke-width="1"/>
+  <text x="600" y="5110" text-anchor="middle" fill="#64748b" font-size="11">issue-collab-core v3.4.0 · 2026-04-23 · 多 Agent 协作引擎 · 完整工作流程图</text>
+</svg>
